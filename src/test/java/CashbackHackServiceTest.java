@@ -1,30 +1,32 @@
-import org.junit.Assert;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import ru.netology.service.CashbackHackService;
 
 public class CashbackHackServiceTest {
     public CashbackHackService service;
 
-    @org.junit.Before
+    @BeforeTest
     public void init() {
         service = new CashbackHackService();
     }
 
-    @org.junit.Test
+    @Test
     public void remainMoreTest() {
-        Assert.assertEquals(999, service.remain(1001));
-        Assert.assertEquals(995, service.remain(1005));
+        Assert.assertEquals(service.remain(1001), 999);
+        Assert.assertEquals(service.remain(1005), 995);
     }
 
-    @org.junit.Test
+    @Test
     public void remainLess1000Test() {
-        Assert.assertEquals(1000, service.remain(0));
-        Assert.assertEquals(999, service.remain(1));
-        Assert.assertEquals(1, service.remain(999));
+        Assert.assertEquals(service.remain(0), 1000);
+        Assert.assertEquals(service.remain(1), 999);
+        Assert.assertEquals(service.remain(999), 1);
     }
 
-    @org.junit.Test
+    @Test
     public void remain1000Test() {
-        Assert.assertEquals(0, service.remain(1000));
+        Assert.assertEquals(service.remain(1000), 0);
     }
 
 }
